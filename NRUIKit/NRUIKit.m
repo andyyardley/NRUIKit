@@ -7,7 +7,3 @@
 //
 
 #import "NRUIKit.h"
-
-@implementation NRUIKit
-
-@end

@@ -7,16 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A138F5AC15BC57BA00D96E8D /* NRUIKitFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A138F5AA15BC57BA00D96E8D /* NRUIKitFunctions.h */; };
+		A138F5AD15BC57BA00D96E8D /* NRUIKitFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A138F5AB15BC57BA00D96E8D /* NRUIKitFunctions.m */; };
 		A18C8F6D155BB75B00C92A47 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18C8F6C155BB75B00C92A47 /* Foundation.framework */; };
 		A18C8F73155BB75B00C92A47 /* NRUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8F72155BB75B00C92A47 /* NRUIKit.m */; };
+		A18C8F93155BB88300C92A47 /* NRSideTabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = A18C8F8B155BB88300C92A47 /* NRSideTabBar.h */; settings = {ATTRIBUTES = (); }; };
+		A18C8F94155BB88300C92A47 /* NRSideTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8F8C155BB88300C92A47 /* NRSideTabBar.m */; };
+		A18C8F95155BB88300C92A47 /* NRSideTitle.h in Headers */ = {isa = PBXBuildFile; fileRef = A18C8F8D155BB88300C92A47 /* NRSideTitle.h */; settings = {ATTRIBUTES = (); }; };
+		A18C8F96155BB88300C92A47 /* NRSideTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8F8E155BB88300C92A47 /* NRSideTitle.m */; };
+		A18C8F97155BB88300C92A47 /* NRTab.h in Headers */ = {isa = PBXBuildFile; fileRef = A18C8F8F155BB88300C92A47 /* NRTab.h */; settings = {ATTRIBUTES = (); }; };
+		A18C8F98155BB88300C92A47 /* NRTab.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8F90155BB88300C92A47 /* NRTab.m */; };
+		A18C8F99155BB88300C92A47 /* NRTabController.h in Headers */ = {isa = PBXBuildFile; fileRef = A18C8F91155BB88300C92A47 /* NRTabController.h */; settings = {ATTRIBUTES = (); }; };
+		A18C8F9A155BB88300C92A47 /* NRTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8F92155BB88300C92A47 /* NRTabController.m */; };
+		A18C8FA1155BB96100C92A47 /* RMDisclosureIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = A18C8F9D155BB96100C92A47 /* RMDisclosureIndicator.h */; settings = {ATTRIBUTES = (); }; };
+		A18C8FA2155BB96100C92A47 /* RMDisclosureIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8F9E155BB96100C92A47 /* RMDisclosureIndicator.m */; };
+		A18C8FA5155BBACA00C92A47 /* NRAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = A18C8FA3155BBACA00C92A47 /* NRAlertView.h */; settings = {ATTRIBUTES = (); }; };
+		A18C8FA6155BBACA00C92A47 /* NRAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8FA4155BBACA00C92A47 /* NRAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A138F5AA15BC57BA00D96E8D /* NRUIKitFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NRUIKitFunctions.h; path = NRUIKit/NRUIKitFunctions.h; sourceTree = "<group>"; };
+		A138F5AB15BC57BA00D96E8D /* NRUIKitFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NRUIKitFunctions.m; path = NRUIKit/NRUIKitFunctions.m; sourceTree = "<group>"; };
 		A18C8F69155BB75B00C92A47 /* libNRUIKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNRUIKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18C8F6C155BB75B00C92A47 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A18C8F70155BB75B00C92A47 /* NRUIKit-Prefix.pch */ = {isa = PBXFileReference; path = "NRUIKit-Prefix.pch"; sourceTree = "<group>"; };
-		A18C8F71155BB75B00C92A47 /* NRUIKit.h */ = {isa = PBXFileReference; path = NRUIKit.h; sourceTree = "<group>"; };
+		A18C8F70155BB75B00C92A47 /* NRUIKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NRUIKit-Prefix.pch"; sourceTree = "<group>"; };
+		A18C8F71155BB75B00C92A47 /* NRUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRUIKit.h; sourceTree = "<group>"; };
 		A18C8F72155BB75B00C92A47 /* NRUIKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRUIKit.m; sourceTree = "<group>"; };
+		A18C8F8B155BB88300C92A47 /* NRSideTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRSideTabBar.h; sourceTree = "<group>"; };
+		A18C8F8C155BB88300C92A47 /* NRSideTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRSideTabBar.m; sourceTree = "<group>"; };
+		A18C8F8D155BB88300C92A47 /* NRSideTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRSideTitle.h; sourceTree = "<group>"; };
+		A18C8F8E155BB88300C92A47 /* NRSideTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRSideTitle.m; sourceTree = "<group>"; };
+		A18C8F8F155BB88300C92A47 /* NRTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRTab.h; sourceTree = "<group>"; };
+		A18C8F90155BB88300C92A47 /* NRTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRTab.m; sourceTree = "<group>"; };
+		A18C8F91155BB88300C92A47 /* NRTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRTabController.h; sourceTree = "<group>"; };
+		A18C8F92155BB88300C92A47 /* NRTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRTabController.m; sourceTree = "<group>"; };
+		A18C8F9D155BB96100C92A47 /* RMDisclosureIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDisclosureIndicator.h; sourceTree = "<group>"; };
+		A18C8F9E155BB96100C92A47 /* RMDisclosureIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDisclosureIndicator.m; sourceTree = "<group>"; };
+		A18C8FA3155BBACA00C92A47 /* NRAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRAlertView.h; sourceTree = "<group>"; };
+		A18C8FA4155BBACA00C92A47 /* NRAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRAlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +62,8 @@
 		A18C8F5E155BB75B00C92A47 = {
 			isa = PBXGroup;
 			children = (
+				A138F5AA15BC57BA00D96E8D /* NRUIKitFunctions.h */,
+				A138F5AB15BC57BA00D96E8D /* NRUIKitFunctions.m */,
 				A18C8F6E155BB75B00C92A47 /* NRUIKit */,
 				A18C8F6B155BB75B00C92A47 /* Frameworks */,
 				A18C8F6A155BB75B00C92A47 /* Products */,
@@ -59,8 +89,13 @@
 		A18C8F6E155BB75B00C92A47 /* NRUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				A18C8F89155BB7E300C92A47 /* TabController */,
+				A18C8FA3155BBACA00C92A47 /* NRAlertView.h */,
+				A18C8FA4155BBACA00C92A47 /* NRAlertView.m */,
 				A18C8F71155BB75B00C92A47 /* NRUIKit.h */,
 				A18C8F72155BB75B00C92A47 /* NRUIKit.m */,
+				A18C8F9D155BB96100C92A47 /* RMDisclosureIndicator.h */,
+				A18C8F9E155BB96100C92A47 /* RMDisclosureIndicator.m */,
 				A18C8F6F155BB75B00C92A47 /* Supporting Files */,
 			);
 			path = NRUIKit;
@@ -74,6 +109,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A18C8F89155BB7E300C92A47 /* TabController */ = {
+			isa = PBXGroup;
+			children = (
+				A18C8F8B155BB88300C92A47 /* NRSideTabBar.h */,
+				A18C8F8C155BB88300C92A47 /* NRSideTabBar.m */,
+				A18C8F8D155BB88300C92A47 /* NRSideTitle.h */,
+				A18C8F8E155BB88300C92A47 /* NRSideTitle.m */,
+				A18C8F8F155BB88300C92A47 /* NRTab.h */,
+				A18C8F90155BB88300C92A47 /* NRTab.m */,
+				A18C8F91155BB88300C92A47 /* NRTabController.h */,
+				A18C8F92155BB88300C92A47 /* NRTabController.m */,
+			);
+			name = TabController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -81,6 +131,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A18C8F93155BB88300C92A47 /* NRSideTabBar.h in Headers */,
+				A18C8F95155BB88300C92A47 /* NRSideTitle.h in Headers */,
+				A18C8F97155BB88300C92A47 /* NRTab.h in Headers */,
+				A18C8F99155BB88300C92A47 /* NRTabController.h in Headers */,
+				A18C8FA1155BB96100C92A47 /* RMDisclosureIndicator.h in Headers */,
+				A18C8FA5155BBACA00C92A47 /* NRAlertView.h in Headers */,
+				A138F5AC15BC57BA00D96E8D /* NRUIKitFunctions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,12 +193,50 @@
 			buildActionMask = 2147483647;
 			files = (
 				A18C8F73155BB75B00C92A47 /* NRUIKit.m in Sources */,
+				A18C8F94155BB88300C92A47 /* NRSideTabBar.m in Sources */,
+				A18C8F96155BB88300C92A47 /* NRSideTitle.m in Sources */,
+				A18C8F98155BB88300C92A47 /* NRTab.m in Sources */,
+				A18C8F9A155BB88300C92A47 /* NRTabController.m in Sources */,
+				A18C8FA2155BB96100C92A47 /* RMDisclosureIndicator.m in Sources */,
+				A18C8FA6155BBACA00C92A47 /* NRAlertView.m in Sources */,
+				A138F5AD15BC57BA00D96E8D /* NRUIKitFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		A13D765F158770FE00C6211B /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AdHoc;
+		};
+		A13D7660158770FE00C6211B /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DSTROOT = /tmp/NRUIKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NRUIKit/NRUIKit-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = AdHoc;
+		};
 		A18C8F74155BB75B00C92A47 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -161,7 +256,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -178,7 +273,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -187,6 +282,7 @@
 		A18C8F77155BB75B00C92A47 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/NRUIKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NRUIKit/NRUIKit-Prefix.pch";
@@ -199,6 +295,7 @@
 		A18C8F78155BB75B00C92A47 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/NRUIKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NRUIKit/NRUIKit-Prefix.pch";
@@ -208,6 +305,37 @@
 			};
 			name = Release;
 		};
+		A1B4B00415B7FFF900CE67EA /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		A1B4B00515B7FFF900CE67EA /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DSTROOT = /tmp/NRUIKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NRUIKit/NRUIKit-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -216,17 +344,22 @@
 			buildConfigurations = (
 				A18C8F74155BB75B00C92A47 /* Debug */,
 				A18C8F75155BB75B00C92A47 /* Release */,
+				A1B4B00415B7FFF900CE67EA /* Distribution */,
+				A13D765F158770FE00C6211B /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AdHoc;
 		};
 		A18C8F76155BB75B00C92A47 /* Build configuration list for PBXNativeTarget "NRUIKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A18C8F77155BB75B00C92A47 /* Debug */,
 				A18C8F78155BB75B00C92A47 /* Release */,
+				A1B4B00515B7FFF900CE67EA /* Distribution */,
+				A13D7660158770FE00C6211B /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = AdHoc;
 		};
 /* End XCConfigurationList section */
 	};

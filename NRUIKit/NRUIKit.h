@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NRUIKit : NSObject
+#import "NRTabController.h"
+#import "NRUIKitFunctions.h"
 
-@end
+@class NRTabController;
