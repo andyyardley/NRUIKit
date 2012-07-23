@@ -69,7 +69,7 @@
         self.layer.shadowOpacity = 0.0f;
         UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(-20, 0, self.bounds.size.width+40, self.bounds.size.height)];
         self.layer.shadowPath = path.CGPath;
-//        self.alpha = 0.4f;
+        self.alpha = 0.4f;
         
         [self addSubview:label];
         

@@ -370,7 +370,7 @@
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone || [_viewControllerStack count]>1) { 
         
-        [UIView animateWithDuration:0.2 delay: 0.0 options: UIViewAnimationCurveEaseOut animations: ^ {
+        [UIView animateWithDuration:0.25 delay: 0.0 options: UIViewAnimationCurveEaseOut animations: ^ {
             
 //            theView.frame = CGRectMake(distance, 0, theView.frame.size.width, theView.frame.size.height);
             
@@ -424,9 +424,9 @@
     
 //    NSLog(@"VIEW SIZE: %@", NSStringFromCGRect(theView.frame));
     
-    return;
+    //return;
     
-    [UIView animateWithDuration:0.2 delay: 0.0 options: UIViewAnimationCurveEaseOut animations: ^ {
+    [UIView animateWithDuration:0.25 delay: 0.0 options: UIViewAnimationCurveEaseOut animations: ^ {
         
         if (SYSTEM_VERSION_LESS_THAN(@"5.0")) [[_viewControllerStack lastObject] viewWillAppear:YES];
         
@@ -556,26 +556,35 @@
     UIView *view = [[UIView alloc] initWithFrame:_containerView.bounds];
     
     if ([_containerView.subviews count]>0) {
-        //view.frame = CGRectMove(_containerView.bounds, _containerView.bounds.size.width, 0);
+        view.frame = CGRectMove(_containerView.bounds, _containerView.bounds.size.width, 0);
     }
 
-    // Create title and add to view
-    NRSideTitle *title = [[NRSideTitle alloc] initWithFrame:CGRectMake(0, 0, 30, _containerView.bounds.size.height)];
-    title.titleLabel.text = [controller valueForKey:@"_title"];
-    [view addSubview:title];
+    if (_titleBarHidden == NO) {
     
-    controller.sideTitle = title;
-    
-    // Create controller container and add to view
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(30, 0, _containerView.bounds.size.width-30, _containerView.bounds.size.height)];
-    [view addSubview:container];
-    container.backgroundColor = [UIColor yellowColor];
-    container.autoresizesSubviews = YES;
-    controller.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-    controller.view.frame = container.bounds;
-    
-    // Add controller to container
-    if ([_viewControllerStack count] <=1) [container addSubview:controller.view];
+        // Create title and add to view
+        NRSideTitle *title = [[NRSideTitle alloc] initWithFrame:CGRectMake(0, 0, 30, _containerView.bounds.size.height)];
+        title.titleLabel.text = [controller valueForKey:@"_title"];
+        [view addSubview:title];
+        
+        controller.sideTitle = title;
+        
+        // Create controller container and add to view
+        UIView *container = [[UIView alloc] initWithFrame:CGRectMake(30, 0, _containerView.bounds.size.width-30, _containerView.bounds.size.height)];
+        [view addSubview:container];
+        container.backgroundColor = [UIColor clearColor];
+        container.autoresizesSubviews = YES;
+        controller.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+        controller.view.frame = container.bounds;
+        
+        // Add controller to container
+        [container addSubview:controller.view];
+        
+    } else {
+        
+        controller.view.frame = view.bounds;
+        [view addSubview:controller.view];
+        
+    }
     
     //Add shadow to view
     [view.layer setShadowColor:[UIColor blackColor].CGColor];
@@ -600,37 +609,13 @@
 
     //Add Controller To View Stack
     [_viewControllerStack addObject:controller];
-//    controller.view.frame = CGRectMake(_mainView.bounds.size.width, _mainView.bounds.origin.y, _mainView.bounds.size.width, _mainView.bounds.size.height);
-    NSLog(@"%@", NSStringFromCGRect(_mainView.bounds));
-    
-    //Add Drop Shadow
-//    [controller.view.layer setShadowColor:[UIColor blackColor].CGColor];
-//    [controller.view.layer setShadowOffset:CGSizeMake(0, 0)];
-//    [controller.view.layer setShadowRadius:15];
-//    controller.view.layer.shadowOpacity = 1.0f;
-//    UIBezierPath *path = [UIBezierPath bezierPathWithRect:controller.view.bounds];
-//    controller.view.layer.shadowPath = path.CGPath;
-//    
-//    controller.view.layer.shouldRasterize = NO;
-//    controller.view.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
     //Add Controller To View
-    
     UIView *view = [self _getViewContainerForController:controller];
     
     if (SYSTEM_VERSION_LESS_THAN(@"5.0")) [controller viewWillAppear:YES];
     
     [_containerView addSubview:view];
-    
-//    if (_titleBarHidden) {
-//        [_containerView addSubview:controller.view];
-//    } else {
-//        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(_mainView.bounds.size.width+30, _mainView.bounds.origin.y, _mainView.bounds.size.width-30, _mainView.bounds.size.height)];
-//        [view addSubview:controller.view];
-//        [_containerView addSubview:view];
-//    }
-    
-//    if (SYSTEM_VERSION_LESS_THAN(@"5.0")) [controller viewDidAppear:YES];
     
     //Set Controller Active
     _activeViewContainer = view;
@@ -669,39 +654,21 @@
         
         if (SYSTEM_VERSION_LESS_THAN(@"5.0")) [controller viewWillAppear:YES];
         
-        
-//        if (controller == [controllers objectAtIndex:0] && _sideTitle.hidden == NO) {
-//            NSLog(@"SIDE TITLE");
-//            controller.view.frame = CGRectMake(30, 0, _mainView.bounds.size.width-30, _mainView.bounds.size.height);
-//        } else {
-            controller.view.frame = _mainView.bounds;
-//        }
-        
-//        UIView *view = [[UIView alloc] initWithFrame:_containerView.bounds];
-//        NRSideTitle *title = [[NRSideTitle alloc] initWithFrame:CGRectMake(0, 0, 30, _containerView.bounds.size.height)];
-//        [view addSubview:title];
-//        UIView *container = [[UIView alloc] initWithFrame:CGRectMake(30, 0, _containerView.bounds.size.width-30, _containerView.bounds.size.height)];
-//        [view addSubview:container];
-//        container.autoresizesSubviews = YES;
-//        controller.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-//        controller.view.frame = container.bounds;
-//        [container addSubview:controller.view];
+        controller.view.frame = _mainView.bounds;
         
         UIView *view = [self _getViewContainerForController:controller];
         
         [_containerView addSubview:view];
         
         [_viewControllerStack addObject:controller];
+        
         if (SYSTEM_VERSION_LESS_THAN(@"5.0")) [controller viewWillAppear:YES];
-//        NSLog(@"WTF");
+
     }
     
     tab.hasBeenShown = YES;
     
     _activeViewContainer = [_containerView.subviews lastObject];
-    
-    NSLog(@"TEST: %@", _activeViewContainer);
-    NSLog(@"TEST: %@", _activeViewContainer);
     
 }
 
@@ -745,8 +712,6 @@
     tab.tabColor = self.tabColor;
     tab.tabSelectedColor = self.tabSelectedColor;
     tab.tabShadow = self.tabShadow;
-    
-    //[_tabs addObject:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:image, title, controller, tab, [NSMutableArray array], nil] forKeys:[NSArray arrayWithObjects:@"image", @"title", @"controller", @"control", @"controllers", nil]]];
     
     controller.view.frame = _mainView.bounds;
     controller.view.layer.rasterizationScale = [UIScreen mainScreen].scale;
