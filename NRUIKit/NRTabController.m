@@ -207,7 +207,7 @@
     BOOL isChild = ([_viewControllerStack count]>1);
     
 //    if (isChild == NO) {
-        theView = _mainView;
+        theView = [self _theView];
 //    } else {
 //        theView = _activeViewControllerContainer;
 //    }
@@ -354,7 +354,7 @@
 
 - (UIView*)_theView
 {
-    NSLog(@"STACK COUNT: %i", [_viewControllerStack count]);
+    //NSLog(@"STACK COUNT: %i", [_viewControllerStack count]);
     return [self _isChild] ? _activeViewContainer : _mainView;
 }
 
@@ -374,17 +374,25 @@
             
 //            theView.frame = CGRectMake(distance, 0, theView.frame.size.width, theView.frame.size.height);
             
-            NSArray *views = _containerView.subviews;
+            if ([_viewControllerStack count]>1) { 
             
-            for (int i=0; i<[views count]; i++) {
-            
-//            if ([_viewControllerStack count]>1) {
-//                for (int i=0; i<[_viewControllerStack count]-1; i++) { 
-                    UIView *view = [_containerView.subviews objectAtIndex:i];
-                    view.frame = CGRectMake(0, 0, _containerView.frame.size.width, _containerView.frame.size.height);
-//                }
+                NSArray *views = _containerView.subviews;
+                
+                for (int i=1; i<[views count]-1; i++) {
+                
+    //            if ([_viewControllerStack count]>1) {
+    //                for (int i=0; i<[_viewControllerStack count]-1; i++) { 
+                        UIView *view = [_containerView.subviews objectAtIndex:i];
+                        view.frame = CGRectMake(0, 0, _containerView.frame.size.width, _containerView.frame.size.height);
+    //                }
+                }
+                
             }
+                
+            UIView *view = [self _theView];
             
+            view.frame = CGRectMake(([_viewControllerStack count]>1)?_containerView.frame.size.width:_tabBarWidth, 0, _containerView.frame.size.width, _containerView.frame.size.height);
+
         } completion: ^(BOOL finished) {
             _animating = NO;
             
