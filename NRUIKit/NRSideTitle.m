@@ -137,22 +137,6 @@ static inline UIImage* MTDContextCreateRoundedMask( CGRect rect, CGFloat radius_
     topBarDragIcon.layer.cornerRadius = 1.5f;
     [self addSubview:topBarDragIcon];
 
-    
-//    UIImageView *arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"RightArrow"]];
-//    arrowImageView.frame = CGRectMake(self.bounds.size.width/2-3, 10, 6, 6);
-//    [self addSubview:arrowImageView];
-//    [arrowImageView release];
-//        
-//    arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"RightArrow"]];
-//    arrowImageView.frame = CGRectMake(self.bounds.size.width/2-3, 16, 6, 6);
-//    [self addSubview:arrowImageView];
-//    [arrowImageView release];
-//    
-//    arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"RightArrow"]];
-//    arrowImageView.frame = CGRectMake(self.bounds.size.width/2-3, 22, 6, 6);
-//    [self addSubview:arrowImageView];
-//    [arrowImageView release];
-    
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder

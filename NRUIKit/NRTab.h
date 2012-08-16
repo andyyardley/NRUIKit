@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class NRTabController;
-@class RMDisclosureIndicator;
+@class NRDisclosureIndicator;
 
 @interface NRTab : UIControl
 {
@@ -17,7 +17,7 @@
 }
 
 @property (strong, nonatomic) NRTabController *tabController;
-@property (strong, nonatomic, readonly) RMDisclosureIndicator *disclosure; 
+@property (strong, nonatomic, readonly) NRDisclosureIndicator *disclosure; 
 
 @property (strong, nonatomic) NSMutableArray *controllers;
 

@@ -19,8 +19,8 @@
 		A18C8F98155BB88300C92A47 /* NRTab.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8F90155BB88300C92A47 /* NRTab.m */; };
 		A18C8F99155BB88300C92A47 /* NRTabController.h in Headers */ = {isa = PBXBuildFile; fileRef = A18C8F91155BB88300C92A47 /* NRTabController.h */; settings = {ATTRIBUTES = (); }; };
 		A18C8F9A155BB88300C92A47 /* NRTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8F92155BB88300C92A47 /* NRTabController.m */; };
-		A18C8FA1155BB96100C92A47 /* RMDisclosureIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = A18C8F9D155BB96100C92A47 /* RMDisclosureIndicator.h */; settings = {ATTRIBUTES = (); }; };
-		A18C8FA2155BB96100C92A47 /* RMDisclosureIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8F9E155BB96100C92A47 /* RMDisclosureIndicator.m */; };
+		A18C8FA1155BB96100C92A47 /* NRDisclosureIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = A18C8F9D155BB96100C92A47 /* NRDisclosureIndicator.h */; settings = {ATTRIBUTES = (); }; };
+		A18C8FA2155BB96100C92A47 /* NRDisclosureIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8F9E155BB96100C92A47 /* NRDisclosureIndicator.m */; };
 		A18C8FA5155BBACA00C92A47 /* NRAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = A18C8FA3155BBACA00C92A47 /* NRAlertView.h */; settings = {ATTRIBUTES = (); }; };
 		A18C8FA6155BBACA00C92A47 /* NRAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A18C8FA4155BBACA00C92A47 /* NRAlertView.m */; };
 /* End PBXBuildFile section */
@@ -41,8 +41,8 @@
 		A18C8F90155BB88300C92A47 /* NRTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRTab.m; sourceTree = "<group>"; };
 		A18C8F91155BB88300C92A47 /* NRTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRTabController.h; sourceTree = "<group>"; };
 		A18C8F92155BB88300C92A47 /* NRTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRTabController.m; sourceTree = "<group>"; };
-		A18C8F9D155BB96100C92A47 /* RMDisclosureIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDisclosureIndicator.h; sourceTree = "<group>"; };
-		A18C8F9E155BB96100C92A47 /* RMDisclosureIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDisclosureIndicator.m; sourceTree = "<group>"; };
+		A18C8F9D155BB96100C92A47 /* NRDisclosureIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRDisclosureIndicator.h; sourceTree = "<group>"; };
+		A18C8F9E155BB96100C92A47 /* NRDisclosureIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRDisclosureIndicator.m; sourceTree = "<group>"; };
 		A18C8FA3155BBACA00C92A47 /* NRAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRAlertView.h; sourceTree = "<group>"; };
 		A18C8FA4155BBACA00C92A47 /* NRAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRAlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,8 +94,8 @@
 				A18C8FA4155BBACA00C92A47 /* NRAlertView.m */,
 				A18C8F71155BB75B00C92A47 /* NRUIKit.h */,
 				A18C8F72155BB75B00C92A47 /* NRUIKit.m */,
-				A18C8F9D155BB96100C92A47 /* RMDisclosureIndicator.h */,
-				A18C8F9E155BB96100C92A47 /* RMDisclosureIndicator.m */,
+				A18C8F9D155BB96100C92A47 /* NRDisclosureIndicator.h */,
+				A18C8F9E155BB96100C92A47 /* NRDisclosureIndicator.m */,
 				A18C8F6F155BB75B00C92A47 /* Supporting Files */,
 			);
 			path = NRUIKit;
@@ -135,7 +135,7 @@
 				A18C8F95155BB88300C92A47 /* NRSideTitle.h in Headers */,
 				A18C8F97155BB88300C92A47 /* NRTab.h in Headers */,
 				A18C8F99155BB88300C92A47 /* NRTabController.h in Headers */,
-				A18C8FA1155BB96100C92A47 /* RMDisclosureIndicator.h in Headers */,
+				A18C8FA1155BB96100C92A47 /* NRDisclosureIndicator.h in Headers */,
 				A18C8FA5155BBACA00C92A47 /* NRAlertView.h in Headers */,
 				A138F5AC15BC57BA00D96E8D /* NRUIKitFunctions.h in Headers */,
 			);
@@ -197,7 +197,7 @@
 				A18C8F96155BB88300C92A47 /* NRSideTitle.m in Sources */,
 				A18C8F98155BB88300C92A47 /* NRTab.m in Sources */,
 				A18C8F9A155BB88300C92A47 /* NRTabController.m in Sources */,
-				A18C8FA2155BB96100C92A47 /* RMDisclosureIndicator.m in Sources */,
+				A18C8FA2155BB96100C92A47 /* NRDisclosureIndicator.m in Sources */,
 				A18C8FA6155BBACA00C92A47 /* NRAlertView.m in Sources */,
 				A138F5AD15BC57BA00D96E8D /* NRUIKitFunctions.m in Sources */,
 			);

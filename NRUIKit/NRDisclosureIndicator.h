@@ -1,6 +1,5 @@
 //
-//  RMDisclosureIndicator.h
-//  ReviewMe
+//  NRDisclosureIndicator.h
 //
 //  Created by Andy on 06/07/2011.
 //  Copyright 2011 Venalicium Ltd. All rights reserved.
@@ -13,7 +12,7 @@ typedef enum {
     NRDisclosureIndicatorLeft
 } NRDisclosureIndicatorDirection;
 
-@interface RMDisclosureIndicator : UIView {
+@interface NRDisclosureIndicator : UIView {
     UIColor *_normalColor;
     NRDisclosureIndicatorDirection _direction;
 }

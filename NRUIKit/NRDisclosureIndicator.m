@@ -1,16 +1,15 @@
 //
-//  RMDisclosureIndicator.m
-//  ReviewMe
+//  NRDisclosureIndicator.m
 //
 //  Created by Andy on 06/07/2011.
 //  Copyright 2011 Venalicium Ltd. All rights reserved.
 //
 
-#import "RMDisclosureIndicator.h"
+#import "NRDisclosureIndicator.h"
 #define RIGHT_MARGIN 5
 #define CONTROL_IS_HIGHLIGHTED YES
 
-@implementation RMDisclosureIndicator
+@implementation NRDisclosureIndicator
 
 - (void)drawRect:(CGRect)rect
 {

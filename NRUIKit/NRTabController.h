@@ -16,8 +16,6 @@
 #define kNotificationTabsVisible @"NotificationTabsVisible"
 #define kNotificationTabsHidden  @"NotificationTabsHidden"
 
-#define SYSTEM_VERSION_LESS_THAN(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-
 @class NRSideTabBar;
 @class NRSideTitle;
 @class NRTab;
@@ -51,20 +49,6 @@
     
 }
 
-//@property (strong, nonatomic) UINavigationController *activeNavigationController;
-//@property (strong, nonatomic) NRSideTabBar *dragBar;
-//
-//@property (strong, nonatomic, readonly) NSMutableArray *tabs;
-//@property (strong, nonatomic, readonly) NRTab *activeTab;
-//
-//@property (strong, nonatomic) UIView *containerView;
-//@property (strong, nonatomic) UIView *activeContainerView;
-//@property (strong, nonatomic) UIViewController *activeContainerController;
-//
-//@property (strong, nonatomic) NSMutableArray *containerViewStack;
-//
-//@property (strong, nonatomic) NRSideTitle *sideTitle;
-
 @property (strong, nonatomic) UIView  *tabBackgroundView;
 
 @property (strong, nonatomic) UIColor *tabBackgroundColor;
@@ -78,7 +62,7 @@
 - (void)newContainerViewController:(UIViewController*)controller;
 - (void)pushViewController:(UIViewController*)controller;
 - (IBAction)tabClick:(UIControl*)sender;
-- (void)popContainerViewController;
+- (void)popViewController;
 - (void)setTitleBarHidden:(BOOL)hidden;
 
 @end

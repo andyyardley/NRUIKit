@@ -10,23 +10,15 @@
 #import <objc/runtime.h>
 #import <QuartzCore/QuartzCore.h>
 
+#define SYSTEM_VERSION_LESS_THAN(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define isChild ([_viewControllerStack count]>1)
+#define theView ((UIView*)(isChild ? _activeViewContainer : _mainView))
+
 @interface NRTabController ()
 
 @end
 
 @implementation NRTabController
-
-//@synthesize activeNavigationController = _activeNavigationController;
-//@synthesize dragBar = _dragBar;
-//@synthesize tabs = _tabs;
-//
-//@synthesize containerViewStack = _containerViewStack;
-//
-////@synthesize containerView = _containerView;
-//@synthesize activeContainerView = _activeContainerView;
-//@synthesize activeContainerController = _activeViewControllerContainer;
-//
-//@synthesize sideTitle = _sideTitle;
 
 @synthesize tabBackgroundView = _tabBackgroundView;
 
@@ -61,19 +53,17 @@
         // Create View Controller Stack
         _viewControllerStack = [[NSMutableArray alloc] init];
         
-        // Create Main View
+        // Create and add Main View
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {   
             _mainView = [[UIView alloc] initWithFrame:CGRectMake(_tabBarWidth, 0, self.view.frame.size.width, self.view.frame.size.height)];
         } else {
             _mainView = [[UIView alloc] initWithFrame:CGRectMake(_tabBarWidth, 0, self.view.frame.size.width-_tabBarWidth, self.view.frame.size.height)];    
         }
         _mainView.autoresizesSubviews = YES;
-        _mainView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        _mainView.backgroundColor = [UIColor clearColor];
-        
-        // Add         
+        _mainView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;     
         [self.view addSubview:_mainView];
 
+        // Create and add container view
         _containerView = [[UIView alloc] initWithFrame:_mainView.bounds];
         _containerView.autoresizesSubviews = YES;
         _containerView.clipsToBounds = YES;
@@ -81,77 +71,18 @@
         _containerView.backgroundColor = [UIColor clearColor];
         [_mainView addSubview:_containerView];
         
+        // Create and add tab bar
         _tabBarView = [[NRSideTabBar alloc] initWithFrame:CGRectMake(0, 0, _tabBarWidth, self.view.frame.size.height)];
         [self.view insertSubview:_tabBarView belowSubview:_mainView];
-        
         _tabBarView.backgroundColor = self.tabBackgroundColor;
-        
-//        _tabBarView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-//        _tabBarView.layer.shouldRasterize = YES;
         _tabBarView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         
         self.tabBackgroundView.frame = _tabBarView.bounds;
-        //[_tabBarView addSubview:self.tabBackgroundView];
-        
-//        self.activeNavigationController = [[UINavigationController alloc] init];
-//        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {   
-//            self.activeNavigationController.view.frame = CGRectMake(30, 0, self.view.frame.size.width-30, self.view.frame.size.height);
-//        } else {
-//            self.activeNavigationController.view.frame = CGRectMake(30, 0, self.view.frame.size.width-_tabBarWidth-30, self.view.frame.size.height);
-//        }
-//        //[_mainView addSubview:self.activeNavigationController.view];
-//        
-//        self.activeContainerView = _mainView;
-//        
-        
-//        _mainView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-        
-        [_mainView.layer setShadowColor:[UIColor blackColor].CGColor];
-        [_mainView.layer setShadowOffset:CGSizeMake(0, 0)];
-        [_mainView.layer setShadowRadius:15];
-        _mainView.layer.shadowOpacity = 1.0f;
-        UIBezierPath *path = [UIBezierPath bezierPathWithRect:_mainView.bounds];
-        _mainView.layer.shadowPath = path.CGPath;
-        
-        //NSLog(@"SIZE %f %f %f %f", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-        
-        //DRAG BAR
-//       FGDFGDFGFDGFDGDFGDFG **** 
-//        self.sideTitle = [[NRSideTitle alloc] initWithFrame:CGRectMake(0, 0, 30, _mainView.bounds.size.height)];
-//        [_mainView insertSubview:self.sideTitle belowSubview:_subControllerContainer];
-//        
-//        self.sideTitle.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-        
-        //self.sideTitle.hidden = YES;
-        /*
-        UIImageView *arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"RightArrow"]];
-        arrowImageView.frame = CGRectMake(2, ((dragBarShow.bounds.size.height/2)-3), 6, 6);
-        [dragBarShow addSubview:arrowImageView];
-        */
-        
-        
-        //self.activeNavigationController.view.layer.shouldRasterize = YES;
-        //self.activeNavigationController.view.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-        
-        //self.activeNavigationController.view.clipsToBounds = YES;
-        
-        //_tabBarView.navigationController = self.activeNavigationController;
-        
-        //[self.view addSubview:_mainView];
-        
-        [UIView animateWithDuration:0.2 delay: 1.0 options: UIViewAnimationCurveEaseInOut animations: ^ {
-            //_mainView.frame = CGRectMake(-(-10), 0, _mainView.frame.size.width, self.view.frame.size.height);
-            //if (self.delegate.history.count>0) [self.toolbar.backButton setAlpha:0.0f];
-            //_open = YES;
-            _animating = NO;
-        } completion: ^(BOOL finished) {
-                        
-        }];
-        
+                
         _tabs = [NSMutableArray array];
         _viewControllerStack = [NSMutableArray array];
         
-//        NSLog(@"CONT SIZE: %@", NSStringFromCGRect(_containerView.frame));
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popViewController) name:@"popViewController" object:nil];
         
     }
     return self;
@@ -172,28 +103,11 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-//    NSLog(@"ROTATEtrtrtr111");
     [_tabBarView setNeedsLayout];
-//    [self.sideTitle setNeedsDisplay];
-//    [self.activeContainerController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-////    self.activeContainerController.view.frame = CGRectMake(0, 0, 480, 320);
-////    self.activeContainerController.view.backgroundColor = [UIColor blueColor];
-//    [self.activeNavigationController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-////    self.activeNavigationController.view.frame = CGRectMake(0, 0, 480, 320);
-////    self.activeNavigationController.view.backgroundColor = [UIColor blueColor];
-//    
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
-//            //_containerView
-//        } else {
-//            
-//        }
-//    } else {
-//        
-//    }
     
-    //NSLog(@"CONT SIZE: %@", NSStringFromCGRect(_containerView.frame));
-    
+    for (UIView *view in _containerView.subviews) {
+        [[view.subviews objectAtIndex:0] setNeedsDisplay];
+    }
 }
 
 - (void)panDetected:(UIGestureRecognizer *)sender
@@ -203,19 +117,6 @@
     
     if (_animating == YES) return;
     
-    UIView *theView;
-    BOOL isChild = ([_viewControllerStack count]>1);
-    
-//    if (isChild == NO) {
-        theView = [self _theView];
-//    } else {
-//        theView = _activeViewControllerContainer;
-//    }
-    
-//    _mainView.layer.shouldRasterize = YES;
-//    self.activeContainerView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-//    self.activeContainerView.layer.shouldRasterize = YES;
-    
     CGPoint translatedPoint = [(UIPanGestureRecognizer*)sender translationInView:self.view];
     
     if ([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateBegan) {
@@ -223,7 +124,7 @@
         _animating = NO;
         _lastPanPoint = translatedPoint;
         
-        if (![self _isChild]) { 
+        if (!isChild) { 
             [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTabsVisible object:nil];
         }
         
@@ -233,9 +134,9 @@
     CGRect frame = _startFrame;
     
     int leftMargin = 0;
-    int rightMargin = [self _isChild] ? self.view.bounds.size.width : _tabBarWidth-10;
+    int rightMargin = isChild ? self.view.bounds.size.width : _tabBarWidth-10;
     
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad && !isChild) {
         leftMargin = _tabBarWidth;
     }
     
@@ -250,22 +151,17 @@
     if (_lastPanPoint.x < (translatedPoint.x-20)) {
         
         //Check for right swipe
-
         [self _closeView];
         
     } else if ([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateEnded && frame.origin.x < rightMargin) {
         
         //User Ended Holding Screen
-        
         _startFrame = CGRectMake(0, 0, theView.frame.size.width, theView.frame.size.height);
         [self _showView]; 
         
     } else {
         
         // User is holding on screen
-        //theView.frame = frame;
-//        _mainView.layer.shouldRasterize = YES;
-        
         [self _moveViews:(frame.origin.x/frame.size.width)];
         
     }
@@ -277,39 +173,23 @@
 - (void)_moveViews:(CGFloat)percent
 {
     
-    if (percent>0.0f && _activeViewContainer.layer.shouldRasterize == NO) _activeViewContainer.layer.shouldRasterize = YES;
+    if (percent>0.0f && _activeViewContainer.layer.shouldRasterize == NO) {
+        _activeViewContainer.layer.shouldRasterize = YES;
+        _activeViewContainer.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    }
     
     if (percent == 0.0f) _activeViewContainer.layer.shouldRasterize = NO;
     
-    if ([self _isChild]) {
-        
-//        for (int i=0; i<[_viewControllerStack count]; i++) {
-//            
-//            UIViewController *controller = [_viewControllerStack objectAtIndex:i];
-//
-//            if (i==[_viewControllerStack count]-1) {
-//                
-//                CGRect frame = controller.view.frame;
-//                frame.origin.x = frame.size.width*percent;
-//                controller.view.frame = frame;
-//
-//            } else if (([_viewControllerStack count]-i)/10.0f < percent) {
-//                
-//                if (percent>[_viewControllerStack count]*0.1f) continue;
-//                
-//                CGRect frame = controller.view.frame;
-//                frame.origin.x = frame.size.width*(percent-(([_viewControllerStack count]-i)/10.0f));
-//                controller.view.frame = frame;
-//                
-//            }
-//            
-//        }
-        
+    if (isChild) {
+
         NSArray *views = _containerView.subviews;
         
         for (int i=0; i<[views count]; i++) {
-            
+
             UIView *view = [views objectAtIndex:i];
+            
+            view.layer.shouldRasterize = YES;
+            view.layer.rasterizationScale = [UIScreen mainScreen].scale;
             
             if (i==[views count]-1) {
                 
@@ -331,17 +211,12 @@
         
     } else {
         
-        CGRect frame = [self _theView].frame;
+        CGRect frame = theView.frame;
         frame.origin.x = frame.size.width*percent;
-        [self _theView].frame = frame;
+        theView.frame = frame;
 
     }
     
-}
-
-- (BOOL)_isChild
-{
-    return ([_viewControllerStack count]>1);
 }
 
 - (int)_getDistance
@@ -349,13 +224,12 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         return _mainView.frame.size.width;
     }
-    return [self _isChild] ? _mainView.frame.size.width : _tabBarWidth;
+    return isChild ? _mainView.frame.size.width : _tabBarWidth;
 }
 
-- (UIView*)_theView
+- (void)popViewController
 {
-    //NSLog(@"STACK COUNT: %i", [_viewControllerStack count]);
-    return [self _isChild] ? _activeViewContainer : _mainView;
+    [self _closeView];
 }
 
 - (void)_closeView
@@ -363,33 +237,29 @@
 
     _animating = YES;
     
-    UIView *theView = [self _theView];
     int distance = [self _getDistance];
     
     _activeViewContainer.layer.shouldRasterize = YES;
+    _activeViewContainer.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone || [_viewControllerStack count]>1) { 
         
         [UIView animateWithDuration:0.25 delay: 0.0 options: UIViewAnimationCurveEaseOut animations: ^ {
-            
-//            theView.frame = CGRectMake(distance, 0, theView.frame.size.width, theView.frame.size.height);
             
             if ([_viewControllerStack count]>1) { 
             
                 NSArray *views = _containerView.subviews;
                 
                 for (int i=1; i<[views count]-1; i++) {
-                
-    //            if ([_viewControllerStack count]>1) {
-    //                for (int i=0; i<[_viewControllerStack count]-1; i++) { 
-                        UIView *view = [_containerView.subviews objectAtIndex:i];
-                        view.frame = CGRectMake(0, 0, _containerView.frame.size.width, _containerView.frame.size.height);
-    //                }
+                    UIView *view = [_containerView.subviews objectAtIndex:i];
+                    view.frame = CGRectMake(0, 0, _containerView.frame.size.width, _containerView.frame.size.height);
                 }
                 
+            } else {
+                theView.userInteractionEnabled = NO;
             }
                 
-            UIView *view = [self _theView];
+            UIView *view = theView;
             
             view.frame = CGRectMake(([_viewControllerStack count]>1)?_containerView.frame.size.width:_tabBarWidth, 0, _containerView.frame.size.width, _containerView.frame.size.height);
 
@@ -397,15 +267,12 @@
             _animating = NO;
             
             //After close animation has finished remove view if is child
-            if ([self _isChild]) {
+            if (isChild) {
                 [theView removeFromSuperview];
                 [_activeTab.controllers removeLastObject];
                 [_viewControllerStack removeLastObject];
-                //_activeViewContainer = [_viewControllerStack lastObject];
                 _activeViewContainer = [_containerView.subviews lastObject];
                 _activeViewContainer.layer.shouldRasterize = NO;
-//                _activeViewControllerContainer.layer.shouldRasterize = NO;
-//                [_activeViewControllerContainer viewDidAppear:YES];
             }
             
         }];
@@ -428,12 +295,6 @@
 
     _animating = YES;
     
-    UIView *theView = [self _theView];
-    
-//    NSLog(@"VIEW SIZE: %@", NSStringFromCGRect(theView.frame));
-    
-    //return;
-    
     [UIView animateWithDuration:0.25 delay: 0.0 options: UIViewAnimationCurveEaseOut animations: ^ {
         
         if (SYSTEM_VERSION_LESS_THAN(@"5.0")) [[_viewControllerStack lastObject] viewWillAppear:YES];
@@ -442,7 +303,6 @@
             theView.frame = CGRectMake(0, 0, theView.frame.size.width, theView.frame.size.height);  
             
             for (int i=0; i<[_containerView.subviews count]; i++) {
-//            for (int i=0; i<[_viewControllerStack count]-1; i++) { 
                 UIView *view = [_containerView.subviews objectAtIndex:i];
                 view.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
             }
@@ -451,12 +311,12 @@
         }
         
         if (SYSTEM_VERSION_LESS_THAN(@"5.0")) [[_viewControllerStack lastObject] viewDidAppear:YES];
-        
 
     } completion: ^(BOOL finished) {
         _animating = NO;
         _activeViewContainer.layer.shouldRasterize = NO;
-        if (![self _isChild]) {
+        if (!isChild) {
+            theView.userInteractionEnabled = YES;
             [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTabsHidden object:nil];
         }
     }];
@@ -465,48 +325,6 @@
 
 - (void)popContainerViewController
 {
-    
-//    int distance = self.view.frame.size.width;
-//    
-//    _animating = YES;
-//    
-//    _startFrame = CGRectMake(0, 0, self.activeContainerView.frame.size.width, self.activeContainerView.frame.size.height);
-//    
-//    [UIView animateWithDuration:0.3f delay: 0.0 options: UIViewAnimationCurveEaseOut animations: ^ {
-//        
-//        _mainView.layer.shouldRasterize = YES;
-//        
-//        self.activeContainerView.frame = CGRectMake(distance, 0, self.activeContainerView.frame.size.width, self.activeContainerView.frame.size.height);
-//        //if (self.delegate.history.count>0) [self.toolbar.backButton setAlpha:1.0f];
-//        
-//        if ([_viewControllerStack count]>1) {
-//            ((UIView*)[_viewControllerStack objectAtIndex:([_viewControllerStack count]-2)]).alpha = 1;
-//            ((UIView*)[_viewControllerStack objectAtIndex:([_viewControllerStack count]-1)]).alpha = 0.4f;
-//        } else _tabBarView.alpha = 1;
-//        
-//        _tabBarOpen = NO;
-//        
-//        //_animating = NO;
-//    } completion: ^(BOOL finished) {
-//        
-//        //_mainView.layer.shouldRasterize = NO;
-//        
-//        if ([_viewControllerStack count]>1){
-//            [self.activeContainerView removeFromSuperview];   
-//            [_viewControllerStack removeLastObject];
-//            self.activeContainerView = [_viewControllerStack objectAtIndex:([_viewControllerStack count]-1)];
-//            
-//            [self.activeNavigationController viewWillAppear:YES];
-//            [self.activeNavigationController viewDidAppear:YES];
-//            
-//            if (self.activeContainerController) {
-//                [self.activeContainerController viewDidDisappear:YES];
-//                self.activeContainerController = nil;
-//            }
-//        }
-//        
-//        
-//    }];    
     
 }
 
@@ -542,14 +360,6 @@
     
     _titleBarHidden = hidden;
     
-//    if (_titleBarHidden == YES) {
-//        self.sideTitle.hidden = YES;
-//        CGRect frame = self.activeNavigationController.view.frame;
-//        frame.size.width += 30;
-//        frame.origin.x -= 30;
-//        self.activeNavigationController.view.frame = frame;
-//    }
-    
 }
 
 /**
@@ -563,6 +373,9 @@
     
     UIView *view = [[UIView alloc] initWithFrame:_containerView.bounds];
     
+    view.autoresizesSubviews = YES;
+    view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
     if ([_containerView.subviews count]>0) {
         view.frame = CGRectMove(_containerView.bounds, _containerView.bounds.size.width, 0);
     }
@@ -572,6 +385,9 @@
         // Create title and add to view
         NRSideTitle *title = [[NRSideTitle alloc] initWithFrame:CGRectMake(0, 0, 30, _containerView.bounds.size.height)];
         title.titleLabel.text = [controller valueForKey:@"_title"];
+        
+        title.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        
         [view addSubview:title];
         
         controller.sideTitle = title;
@@ -581,7 +397,9 @@
         [view addSubview:container];
         container.backgroundColor = [UIColor clearColor];
         container.autoresizesSubviews = YES;
-        controller.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+        container.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        controller.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        //controller.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
         controller.view.frame = container.bounds;
         
         // Add controller to container
@@ -670,7 +488,7 @@
         
         [_viewControllerStack addObject:controller];
         
-        if (SYSTEM_VERSION_LESS_THAN(@"5.0")) [controller viewWillAppear:YES];
+        if (SYSTEM_VERSION_LESS_THAN(@"5.0")) [controller viewDidAppear:YES];
 
     }
     
@@ -732,6 +550,8 @@
     
     [_tabBarView.tabContainer addSubview:tab];
     [_tabBarView.tabContainer sendSubviewToBack:tab];
+    
+    _tabBarView.tabContainer.frame = CGRectResize(_tabBarView.tabContainer.frame, _tabBarView.tabContainer.frame.size.width, ([_tabs count]+1)*(tab.frame.size.height+1));
     
 }
 
